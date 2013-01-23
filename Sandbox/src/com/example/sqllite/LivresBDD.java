@@ -1,5 +1,5 @@
 package com.example.sqllite;
-
+import Utils.*;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -27,6 +27,10 @@ public class LivresBDD {
 		//On créer la BDD et sa table
 		maBaseSQLite = new MaBaseSQLite(context, NOM_BDD, null, VERSION_BDD);
 	}
+	
+	public void raz(){
+		maBaseSQLite.onUpgrade(bdd, VERSION_BDD, VERSION_BDD);
+	}
  
 	public void open(){
 		//on ouvre la BDD en écriture
@@ -40,6 +44,12 @@ public class LivresBDD {
  
 	public SQLiteDatabase getBDD(){
 		return bdd;
+	}
+	
+	public int getNbLivre()
+	{
+		Cursor curs = bdd.rawQuery("select * from " + TABLE_LIVRES + ";", null);
+		return curs.getCount();
 	}
  
 	public long insertLivre(Livre livre){
@@ -69,6 +79,12 @@ public class LivresBDD {
 	public Livre getLivreWithTitre(String titre){
 		//Récupère dans un Cursor les valeur correspondant à un livre contenu dans la BDD (ici on sélectionne le livre grâce à son titre)
 		Cursor c = bdd.query(TABLE_LIVRES, new String[] {COL_ID, COL_ISBN, COL_TITRE}, COL_TITRE + " LIKE \"" + titre +"\"", null, null, null, null);
+		return cursorToLivre(c);
+	}
+	
+	public Livre getLivreWithId(int id){
+		//Récupère dans un Cursor les valeur correspondant à un livre contenu dans la BDD (ici on sélectionne le livre grâce à son titre)
+		Cursor c = bdd.rawQuery("select * from " + TABLE_LIVRES + " where " + COL_ID + " = " + id + ";", null);
 		return cursorToLivre(c);
 	}
  
