@@ -31,6 +31,13 @@ public class MainActivity extends Activity {
         }
         
     }
+    
+    public void onResume()
+    {
+    	super.onResume();
+    	ISBN = "ISBN stub";
+        TITLE = "Title stub";
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
