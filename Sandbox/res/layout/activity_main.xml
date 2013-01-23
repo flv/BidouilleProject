@@ -30,6 +30,12 @@
         android:layout_height="wrap_content"
         android:onClick="sendMessage"
         android:text="@string/button_send" />
+    
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="validerDonnées"
+        android:text="valider données" />
 
 
 </LinearLayout>

@@ -43,6 +43,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.sandbox.Accueil" />
         </activity>
+        <activity
+            android:name=".PriseDuQrcode"
+            android:label="@string/title_activity_prise_du_qrcode" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.sandbox.Accueil" />
+        </activity>
     </application>
 
 </manifest>

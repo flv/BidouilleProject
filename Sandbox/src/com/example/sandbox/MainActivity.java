@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 
 public class MainActivity extends Activity {
-    public static String ISBN = "ISBN stub";
-    public static String TITLE = "Title stub";
+    public static String ISBN = "Nom ";
+    public static String TITLE = "Description";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,6 +64,12 @@ public class MainActivity extends Activity {
     
     public void goToAccueil(View view) {
     	Intent intent = new Intent(this, Accueil.class);
+    	
+    	startActivity(intent);
+    }
+    
+    public void validerDonnées(View view) {
+    	Intent intent = new Intent(this, PriseDuQrcode.class);
     	
     	startActivity(intent);
     }

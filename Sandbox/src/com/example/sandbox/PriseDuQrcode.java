@@ -1,34 +1,36 @@
 package com.example.sandbox;
 
-
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.support.v4.app.NavUtils;
 
-public class Accueil extends Activity {
+public class PriseDuQrcode extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accueil);
+        setContentView(R.layout.activity_prise_du_qrcode);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_accueil, menu);
+        getMenuInflater().inflate(R.menu.activity_prise_du_qrcode, menu);
         return true;
     }
     
-    public void goToBiduleBDD(View view) {
-    	Intent intent = new Intent(this, BaseDEDonnee.class);
+    public void goToAccueil(View view) {
+    	Intent intent = new Intent(this, Accueil.class);
+    	
     	startActivity(intent);
     }
     
-    public void goToTakeQrcode(View view) {
-    	Intent intent = new Intent(this, PriseDuQrcode.class);
+    public void goToTakeInformation(View view) {
+    	Intent intent = new Intent(this, MainActivity.class);
     	startActivity(intent);
     }
+
 }

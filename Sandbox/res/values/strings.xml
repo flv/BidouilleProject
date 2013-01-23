@@ -12,5 +12,6 @@
     <string name="Title_Message">Enter a Title</string>
     <string name="title_activity_acueil">Acueil</string>
     <string name="title_activity_base_dedonnee">BaseDEDonnee</string>
+    <string name="title_activity_prise_du_qrcode">PriseDuQrcode</string>
 
 </resources>
