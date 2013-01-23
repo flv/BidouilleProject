@@ -61,4 +61,10 @@ public class MainActivity extends Activity {
     	
     	startActivity(intent);
     }
+    
+    public void goToAccueil(View view) {
+    	Intent intent = new Intent(this, Accueil.class);
+    	
+    	startActivity(intent);
+    }
 }

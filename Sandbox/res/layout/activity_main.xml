@@ -22,5 +22,12 @@
         android:layout_height="wrap_content"
         android:onClick="sendMessage"
         android:text="@string/button_send" />
+    
+    <Button
+        android:id="@+id/okButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToAccueil"
+        android:text="Go to new Accueil" />
 
 </LinearLayout>
