@@ -1,4 +1,3 @@
-<<<<<<< Original
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sandbox"
     android:versionCode="1"
@@ -40,16 +39,3 @@
     </application>
 
 </manifest>
-=======
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" >
-
-    <application>
-        <activity android:name=".QrcodeDonees"
-            android:label="@string/title_activity_qrcode_donees">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.sandbox.DisplayMessageActivity" />
-        </activity>
-    </application>
-
-</manifest>
->>>>>>> Added

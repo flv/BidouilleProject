@@ -7,6 +7,7 @@
     <string name="edit_message">Entrer un message</string>
     <string name="button_send">Send</string>
     <string name="title_activity_display_message">MyMessage</string>
-    <string name="title_activity_qrcode_donees">QrcodeDonees</string>
+    <string name="ISBN_Message">Enter ISBN</string>
+    <string name="Title_Message">Enter a Title</string>
 
 </resources>

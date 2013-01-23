@@ -16,13 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-abstract class Utils {
-
-	public static void popDebug(Context context, String message) {
-		Toast.makeText(context, message, 1000).show();
-	}
-
-}
 
 public class QrcodeDonees extends Activity {
 
