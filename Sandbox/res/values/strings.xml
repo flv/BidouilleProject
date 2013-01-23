@@ -11,5 +11,6 @@
     <string name="ISBN_Message">Enter ISBN</string>
     <string name="Title_Message">Enter a Title</string>
     <string name="title_activity_acueil">Acueil</string>
+    <string name="title_activity_base_dedonnee">BaseDEDonnee</string>
 
 </resources>
