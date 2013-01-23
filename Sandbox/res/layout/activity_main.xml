@@ -3,24 +3,22 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="vertical" >
 
     <EditText
         android:id="@+id/isbn_edit_message"
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:hint="@string/edit_message" />
+        android:hint="@string/ISBN_Message" />
     
     <EditText
         android:id="@+id/title_edit_message"
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:hint="@+string/title_edit_message"/>
+        android:hint="@string/Title_Message"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="sendMessage"
         android:text="@string/button_send" />

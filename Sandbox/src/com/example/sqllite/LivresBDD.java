@@ -1,5 +1,5 @@
 package com.example.sqllite;
-
+import Utils.*;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -26,6 +26,10 @@ public class LivresBDD {
 	public LivresBDD(Context context){
 		//On créer la BDD et sa table
 		maBaseSQLite = new MaBaseSQLite(context, NOM_BDD, null, VERSION_BDD);
+	}
+	
+	public void raz(){
+		maBaseSQLite.onUpgrade(bdd, VERSION_BDD, VERSION_BDD);
 	}
  
 	public void open(){

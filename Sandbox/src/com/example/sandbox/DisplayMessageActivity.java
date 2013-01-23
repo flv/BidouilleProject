@@ -37,28 +37,22 @@ public class DisplayMessageActivity extends Activity {
 			LivresBDD livreBdd = new LivresBDD(this);
 			livreBdd.open();
 			
-			//Utils.popDebug(this, "Bd ouverte");
 			int nbLignes = livreBdd.getNbLivre();
-			Utils.popDebug(this, "nbLignes obtenu : " + nbLignes);
 			TextView[] books = new TextView[nbLignes];
-			Utils.popDebug(this, "TextView[] créé");
 			for (int i = 0; i < nbLignes; i ++)
 			{
-				Utils.popDebug(this, "Passage dans la boucle " + i);
+				
 				// Create the text view
 				books[i] = new TextView(this);
-				Utils.popDebug(this, "TextView créé");
-				books[i].setText(livreBdd.getLivreWithId(i).toString());
-				Utils.popDebug(this, "GetLivreWithId effectué : " + livreBdd.getLivreWithId(i).toString());
+				books[i].setText(livreBdd.getLivreWithId(i+1).toString());
+				
 				books[i].setLayoutParams(new LayoutParams(
 						LayoutParams.WRAP_CONTENT,
 						LayoutParams.WRAP_CONTENT));
-				Utils.popDebug(this, "LayoutParams set");
 				
 				// Add the text view to the activity layout
 				
 				((ViewGroup) linearLayout).addView(books[i]);
-				Utils.popDebug(this, "TextView ajouté au layout");
 			}
 			
 			livreBdd.close();

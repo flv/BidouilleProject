@@ -1,5 +1,5 @@
 package com.example.sandbox;
-
+import Utils.*;
 import com.example.sqllite.Livre;
 import com.example.sqllite.LivresBDD;
 
@@ -18,6 +18,18 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try {
+        	LivresBDD lbdd = new LivresBDD(this);
+        	lbdd.open();
+        	lbdd.raz();
+        	lbdd.close();
+        }
+        catch (Exception e)
+        {
+        	Utils.popDebug(this, "Exception : " + e.getMessage());
+        }
+        
     }
 
     @Override
@@ -33,13 +45,13 @@ public class MainActivity extends Activity {
     	EditText isbn = (EditText) findViewById(R.id.isbn_edit_message);
     	EditText title = (EditText) findViewById(R.id.title_edit_message);
     	
-    	if (!isbn.toString().equals(null))
+    	if (!isbn.getText().toString().equals(""))
     	{
-    		ISBN = isbn.toString();
+    		ISBN = isbn.getText().toString();
     	}
-    	if (!title.toString().equals(null))
+    	if (!title.getText().toString().equals(""))
     	{
-    		TITLE = title.toString();
+    		TITLE = title.getText().toString();
     	}
     	
     	LivresBDD livreBdd = new LivresBDD(this);

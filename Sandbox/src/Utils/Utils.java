@@ -6,7 +6,7 @@ import android.widget.Toast;
 public abstract class Utils {
 
 	public static void popDebug(Context context, String message) {
-		Toast.makeText(context, message, 1000).show();
+		Toast.makeText(context, message, 10000).show();
 	}
 
 }
