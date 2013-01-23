@@ -28,17 +28,8 @@
                 android:value="com.example.sandbox.MainActivity" />
         </activity>
         <activity
-            android:name=".QrcodeDonees"
-            android:label="bite" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".Acueil"
-            android:label="@string/title_activity_acueil" >
+            android:name=".Accueil"
+            android:label="@string/title_activity_accueil" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
