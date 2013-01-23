@@ -3,7 +3,15 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#000000" >
+    
+    <Button
+        android:id="@+id/okButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToAccueil"
+        android:text="Go to new Accueil" />
 
     <EditText
         android:id="@+id/isbn_edit_message"
@@ -22,12 +30,6 @@
         android:layout_height="wrap_content"
         android:onClick="sendMessage"
         android:text="@string/button_send" />
-    
-    <Button
-        android:id="@+id/okButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="goToAccueil"
-        android:text="Go to new Accueil" />
+
 
 </LinearLayout>

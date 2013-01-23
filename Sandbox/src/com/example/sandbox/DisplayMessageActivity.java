@@ -67,12 +67,11 @@ public class DisplayMessageActivity extends Activity {
 
 	}
 
-	/*@Override
-	public void onResume(){
-
-		super.onResume();
-
-	}*/
+	public void goToAccueil(View view) {
+    	Intent intent = new Intent(this, Accueil.class);
+    	
+    	startActivity(intent);
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
