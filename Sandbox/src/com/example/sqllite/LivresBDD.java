@@ -80,7 +80,7 @@ public class LivresBDD {
 	
 	public Livre getLivreWithId(int id){
 		//Récupère dans un Cursor les valeur correspondant à un livre contenu dans la BDD (ici on sélectionne le livre grâce à son titre)
-		Cursor c = bdd.query(TABLE_LIVRES, new String[] {COL_ID, COL_ISBN, COL_TITRE}, COL_ID + " =" + id +"", null, null, null, null);
+		Cursor c = bdd.rawQuery("select * from " + TABLE_LIVRES + " where " + COL_ID + " = " + id + ";", null);
 		return cursorToLivre(c);
 	}
  

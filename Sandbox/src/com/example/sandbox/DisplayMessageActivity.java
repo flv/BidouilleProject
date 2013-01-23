@@ -1,7 +1,7 @@
 package com.example.sandbox;
 
 import com.example.sqllite.*;
-
+import Utils.*;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -15,14 +15,6 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-abstract class Utils {
-
-	public static void popDebug(Context context, String message) {
-		Toast.makeText(context, message, 1000).show();
-	}
-
-}
 
 public class DisplayMessageActivity extends Activity {
 
@@ -45,21 +37,28 @@ public class DisplayMessageActivity extends Activity {
 			LivresBDD livreBdd = new LivresBDD(this);
 			livreBdd.open();
 			
-			
+			//Utils.popDebug(this, "Bd ouverte");
 			int nbLignes = livreBdd.getNbLivre();
+			Utils.popDebug(this, "nbLignes obtenu : " + nbLignes);
 			TextView[] books = new TextView[nbLignes];
+			Utils.popDebug(this, "TextView[] créé");
 			for (int i = 0; i < nbLignes; i ++)
 			{
+				Utils.popDebug(this, "Passage dans la boucle " + i);
 				// Create the text view
 				books[i] = new TextView(this);
+				Utils.popDebug(this, "TextView créé");
 				books[i].setText(livreBdd.getLivreWithId(i).toString());
+				Utils.popDebug(this, "GetLivreWithId effectué : " + livreBdd.getLivreWithId(i).toString());
 				books[i].setLayoutParams(new LayoutParams(
 						LayoutParams.WRAP_CONTENT,
 						LayoutParams.WRAP_CONTENT));
+				Utils.popDebug(this, "LayoutParams set");
 				
 				// Add the text view to the activity layout
 				
 				((ViewGroup) linearLayout).addView(books[i]);
+				Utils.popDebug(this, "TextView ajouté au layout");
 			}
 			
 			livreBdd.close();
