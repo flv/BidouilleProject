@@ -1,5 +1,4 @@
 package com.example.sqllite;
-import Utils.*;
 
 import android.content.ContentValues;
 import android.content.Context;
