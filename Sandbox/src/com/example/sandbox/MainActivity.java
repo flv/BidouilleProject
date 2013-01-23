@@ -11,23 +11,13 @@ import android.view.View;
 import android.widget.EditText;
 
 public class MainActivity extends Activity {
-    public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-    public final static String TEST_MESSAGE = "Test";
+    public static String ISBN = "ISBN stub";
+    public static String TITLE = "Title stub";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-
-		LivresBDD livreBdd = new LivresBDD(this);
-		Livre livre = new Livre("045446831", "GoT");
-		Livre livre2 = new Livre("021546843", "GoT2");
-		
-		livreBdd.open();
-		livreBdd.insertLivre(livre);
-		livreBdd.insertLivre(livre2);
-		livreBdd.close();
     }
 
     @Override
@@ -40,10 +30,22 @@ public class MainActivity extends Activity {
     	
     	Intent intent = new Intent(this, DisplayMessageActivity.class);
     	
-    	EditText editText = (EditText) findViewById(R.id.edit_message);
-    	String message = editText.getText().toString();
-    	intent.putExtra(EXTRA_MESSAGE, message);
-    	intent.putExtra(TEST_MESSAGE, "Test");
+    	EditText isbn = (EditText) findViewById(R.id.isbn_edit_message);
+    	EditText title = (EditText) findViewById(R.id.title_edit_message);
+    	
+    	if (!isbn.toString().equals(null))
+    	{
+    		ISBN = isbn.toString();
+    	}
+    	if (!title.toString().equals(null))
+    	{
+    		TITLE = title.toString();
+    	}
+    	
+    	LivresBDD livreBdd = new LivresBDD(this);
+    	livreBdd.open();
+    	livreBdd.insertLivre(new Livre(ISBN, TITLE));
+    	livreBdd.close();    	
     	
     	startActivity(intent);
     }
