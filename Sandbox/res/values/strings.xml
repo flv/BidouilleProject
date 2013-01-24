@@ -10,21 +10,11 @@
     <string name="title_activity_accueil">The super accueil</string>
     <string name="ISBN_Message">Enter ISBN</string>
     <string name="Title_Message">Enter a Title</string>
+    <string name="parent">Entrer un parent</string>
     <string name="title_activity_acueil">Acueil</string>
     <string name="title_activity_base_dedonnee">BaseDEDonnee</string>
     <string name="title_activity_prise_du_qrcode">PriseDuQrcode</string>
     
-  
- 
-    <string-array name="country_arrays">
-        <item>Malaysia</item>
-        <item>United States</item>
-        <item>Indonesia</item>
-        <item>France</item>
-        <item>Italy</item>
-        <item>Singapore</item>
-        <item>New Zealand</item>
-        <item>India</item>
-    </string-array>
+
 
 </resources>

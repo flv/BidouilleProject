@@ -1,7 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#000000" >
 
     <Button
@@ -20,20 +21,55 @@
         android:text="@string/hello_world"
         tools:context=".BaseDEDonnee" />
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView1"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_marginBottom="18dp"
-        android:text="Submit" />
+    
 
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/okButton" />
+         />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/okButton"
+        android:text="Submit" />
+    
+    <Button
+        android:id="@+id/retourInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="retourParent"
+        android:text="backInformation" />
+    
+    
+    <ScrollView 
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:textColor="#FF0000"
+    	android:orientation="vertical" >
+    
+    <RadioGroup
+        android:id="@+id/radioAterissage"
+        android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:textColor="#FFFFFF"
+    android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="26dp"
+        android:textColor="#FFFFFF"
+        android:text="Rouge"/>
+
+        
+    </RadioGroup>
+    </ScrollView>
+
+</LinearLayout>

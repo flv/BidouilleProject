@@ -29,7 +29,7 @@
         android:id="@+id/parent_edit_message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="parent"/>
+        android:hint="@string/parent"/>
     
     <Button
         android:layout_width="fill_parent"
