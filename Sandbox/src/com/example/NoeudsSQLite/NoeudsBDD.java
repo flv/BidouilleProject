@@ -14,7 +14,7 @@ public class NoeudsBDD {
 	private static final int VERSION_BDD = 1;
 	private static final String NOM_BDD = "Synchrotags.db";
 
-	private static final String TABLE_NOEUDS = "table_noeuds";
+	private static final String TABLE_NOEUDS = "TABLE_NOEUDS";
 	private static final String COL_CLE = "CLE";
 	private static final int NUM_COL_CLE = 0;
 	private static final String COL_NOM = "NOM";
@@ -26,7 +26,7 @@ public class NoeudsBDD {
 	private static final String COL_META = "META";
 	private static final int NUM_COL_META = 4;
 
-	private static final String TABLE_META = "table_meta";
+	private static final String TABLE_META = "TABLE_META";
 	private static final String COL_CLE_META = "CLE";
 	private static final int NUM_COL_CLE_META = 0;
 	private static final String COL_TYPE = "TYPE_METADONNEE";
@@ -102,10 +102,10 @@ public class NoeudsBDD {
 		//Création d'un ContentValues (fonctionne comme une HashMap)
 		ContentValues values = new ContentValues();
 		//on lui ajoute une valeur associé à une clé (qui est le nom de la colonne dans laquelle on veut mettre la valeur)
-		values.put(COL_NOM, nom);
-		values.put(COL_QRCODE, code);
-		values.put(COL_PERE, pere);
-		values.put(COL_META, meta);
+		values.put("NOM", nom);
+		values.put("QRCODE", code);
+		values.put("PERE", pere);
+		values.put("META", meta);
 		
 		//on insère l'objet dans la BDD via le ContentValues
 		

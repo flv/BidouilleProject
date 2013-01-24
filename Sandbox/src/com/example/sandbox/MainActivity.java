@@ -73,6 +73,7 @@ public class MainActivity extends Activity {
 			Utils.textViewDebug(this, this, R.id.main_layout, "Bd ouverte");
 			Utils.textViewDebug(this, this, R.id.main_layout, "Noeud créé");
 			Utils.textViewDebug(this, this, R.id.main_layout, "Nb noeuds : " + nbdd.getNbNoeuds());	
+			Utils.textViewDebug(this, this, R.id.main_layout, nbdd.getBDD().toString());
 			Utils.textViewDebug(this, this, R.id.main_layout, "Résultat de l'insert : " + nbdd.insertNoeudTests("Nom", "Code", 0, 0));
 			Utils.textViewDebug(this, this, R.id.main_layout, "Nb noeuds : " + nbdd.getNbNoeuds());
 			nbdd.close();

@@ -19,13 +19,20 @@ public class BaseSQLite extends SQLiteOpenHelper {
 	private static final String COL_TYPE = "TYPE_METADONNEE";
 	private static final String COL_CONTENU = "CONTENU_METADONNEE";
 
-	private static final String CREATE_NOEUDS = "CREATE TABLE " + TABLE_NOEUDS + " ("
-			+ COL_CLE + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_NOM + " TEXT NOT NULL, "
-			+ COL_QRCODE + " TEXT NOT NULL, " + COL_PERE + "INTEGER, " + COL_META + "INTEGER);";
+	private static final String CREATE_NOEUDS = "UPDATE TABLE " + TABLE_NOEUDS + " ("
+			+ COL_CLE + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ COL_NOM + " TEXT NOT NULL, "
+			+ COL_QRCODE + " TEXT NOT NULL, "
+			+ COL_PERE + " INTEGER, "
+			+ COL_META + " INTEGER"
+			+ ");";
 	
-	private static final String CREATE_META = "CREATE TABLE " + TABLE_META + " ("
-			+ COL_CLE_META + " INTEGER NOT NULL, " + COL_TYPE + " TEXT NOT NULL, "
-			+ COL_CONTENU + " TEXT NOT NULL, PRIMARY KEY("+ COL_CLE_META + ", " + COL_TYPE +"));";
+	private static final String CREATE_META = "UPDATE TABLE " + TABLE_META + " ("
+			+ COL_CLE_META + " INTEGER NOT NULL, " 
+			+ COL_TYPE + " TEXT NOT NULL, "
+			+ COL_CONTENU + " TEXT NOT NULL,"
+			+ " PRIMARY KEY("+ COL_CLE_META + ", " + COL_TYPE +")" 
+			+ ");";
 
 	public BaseSQLite (Context context, String name, CursorFactory factory, int version) {
 		super(context, name, factory, version);
