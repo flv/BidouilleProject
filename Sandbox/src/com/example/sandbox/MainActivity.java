@@ -1,5 +1,6 @@
 package com.example.sandbox;
 import Utils.*;
+
 import com.example.sqllite.Livre;
 import com.example.sqllite.LivresBDD;
 
@@ -13,6 +14,7 @@ import android.widget.EditText;
 public class MainActivity extends Activity {
     public static String ISBN = "Nom ";
     public static String TITLE = "Description";
+    public static String PARENT = "parent";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class MainActivity extends Activity {
     	
     	EditText isbn = (EditText) findViewById(R.id.isbn_edit_message);
     	EditText title = (EditText) findViewById(R.id.title_edit_message);
+    	EditText parent = (EditText) findViewById(R.id.parent_edit_message);
     	
     	if (!isbn.getText().toString().equals(""))
     	{
@@ -53,9 +56,14 @@ public class MainActivity extends Activity {
     	{
     		TITLE = title.getText().toString();
     	}
+    	if (!parent.getText().toString().equals(""))
+    	{
+    		PARENT = parent.getText().toString();
+    	}
     	
     	LivresBDD livreBdd = new LivresBDD(this);
     	livreBdd.open();
+    	/****prendre parent dans la base de donné****/
     	livreBdd.insertLivre(new Livre(ISBN, TITLE));
     	livreBdd.close();    	
     	
@@ -64,6 +72,12 @@ public class MainActivity extends Activity {
     
     public void goToAccueil(View view) {
     	Intent intent = new Intent(this, Accueil.class);
+    	
+    	startActivity(intent);
+    }
+    
+    public void rechercherParent(View view) {
+    	Intent intent = new Intent(this, BaseDEDonnee.class);
     	
     	startActivity(intent);
     }

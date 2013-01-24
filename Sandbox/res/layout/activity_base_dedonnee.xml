@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000" >
-    
+
     <Button
         android:id="@+id/okButton"
         android:layout_width="fill_parent"
@@ -12,11 +12,28 @@
         android:text="go to new accueil" />
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/hello_world"
         tools:context=".BaseDEDonnee" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_marginBottom="18dp"
+        android:text="Submit" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/okButton" />
 
 </RelativeLayout>

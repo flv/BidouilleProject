@@ -1,5 +1,9 @@
 package com.example.sandbox;
 
+import com.example.sandbox.R;
+import com.example.sandbox.R.id;
+import com.example.sandbox.R.layout;
+import com.example.sandbox.R.menu;
 import com.example.sqllite.*;
 import Utils.*;
 import android.app.Activity;

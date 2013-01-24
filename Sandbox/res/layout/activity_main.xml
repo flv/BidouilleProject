@@ -24,6 +24,18 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/Title_Message"/>
+    
+    <EditText
+        android:id="@+id/parent_edit_message"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="parent"/>
+    
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="rechercherParent"
+        android:text="rechercher parent" />
 
     <Button
         android:layout_width="fill_parent"
