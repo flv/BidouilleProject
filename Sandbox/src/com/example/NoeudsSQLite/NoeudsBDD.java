@@ -3,6 +3,7 @@ package com.example.NoeudsSQLite;
 import com.example.sqllite.Livre;
 import com.example.sqllite.MaBaseSQLite;
 
+import Data.DatabaseConstants;
 import Utils.Utils;
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,29 +15,29 @@ public class NoeudsBDD {
 	private static final int VERSION_BDD = 1;
 	private static final String NOM_BDD = "Synchrotags.db";
 
-	private static final String TABLE_NOEUDS = "TABLE_NOEUDS";
-	private static final String COL_CLE = "CLE";
-	private static final int NUM_COL_CLE = 0;
-	private static final String COL_NOM = "NOM";
-	private static final int NUM_COL_NOM = 1;
-	private static final String COL_QRCODE = "QRCODE";
-	private static final int NUM_COL_QRCODE = 2;
-	private static final String COL_PERE = "PERE";
-	private static final int NUM_COL_PERE = 3;
-	private static final String COL_META = "META";
-	private static final int NUM_COL_META = 4;
+	private static final String TABLE_NOEUDS = DatabaseConstants.TABLE_NOEUDS;
+	private static final String COL_CLE = DatabaseConstants.COL_CLE;
+	private static final int NUM_COL_CLE = DatabaseConstants.NUM_COL_CLE;
+	private static final String COL_NOM = DatabaseConstants.COL_NOM;
+	private static final int NUM_COL_NOM = DatabaseConstants.NUM_COL_NOM;
+	private static final String COL_QRCODE = DatabaseConstants.COL_QRCODE;
+	private static final int NUM_COL_QRCODE = DatabaseConstants.NUM_COL_QRCODE;
+	private static final String COL_PERE = DatabaseConstants.COL_PERE;
+	private static final int NUM_COL_PERE = DatabaseConstants.NUM_COL_PERE;
+	private static final String COL_META = DatabaseConstants.COL_META;
+	private static final int NUM_COL_META = DatabaseConstants.NUM_COL_META;
 
-	private static final String TABLE_META = "TABLE_META";
-	private static final String COL_CLE_META = "CLE";
-	private static final int NUM_COL_CLE_META = 0;
-	private static final String COL_TYPE = "TYPE_METADONNEE";
-	private static final int NUM_COL_TYPE = 1;
-	private static final String COL_CONTENU = "CONTENU_METADONNEE";
-	private static final int NUM_COL_CONTENU = 2;
+	private static final String TABLE_META = DatabaseConstants.TABLE_META;
+	private static final String COL_CLE_META = DatabaseConstants.COL_CLE_META;
+	private static final int NUM_COL_CLE_META = DatabaseConstants.NUM_COL_CLE_META;
+	private static final String COL_TYPE = DatabaseConstants.COL_TYPE;
+	private static final int NUM_COL_TYPE = DatabaseConstants.NUM_COL_TYPE;
+	private static final String COL_CONTENU = DatabaseConstants.COL_CONTENU;
+	private static final int NUM_COL_CONTENU = DatabaseConstants.NUM_COL_CONTENU;
 
 	private SQLiteDatabase bdd;
 
-	private BaseSQLite maBaseSQLite;
+	public BaseSQLite maBaseSQLite;
 
 	public NoeudsBDD(Context context){
 		//On créer la BDD et sa table
@@ -97,15 +98,16 @@ public class NoeudsBDD {
 		//noeud.setId(c.getInt(NUM_COL_CLE));*/
 	}
 	
-	public long insertNoeudTests(String nom, String code, int pere, int meta) throws NoMatchableNodeException
+	public long insertNoeudTests(String nom, String code, int pere, int meta)
 	{
 		//Création d'un ContentValues (fonctionne comme une HashMap)
 		ContentValues values = new ContentValues();
 		//on lui ajoute une valeur associé à une clé (qui est le nom de la colonne dans laquelle on veut mettre la valeur)
-		values.put("NOM", nom);
-		values.put("QRCODE", code);
-		values.put("PERE", pere);
-		values.put("META", meta);
+		values.put(COL_PERE, pere);
+		values.put(COL_META, meta);
+		values.put(COL_NOM, nom);
+		values.put(COL_QRCODE, code);
+		
 		
 		//on insère l'objet dans la BDD via le ContentValues
 		

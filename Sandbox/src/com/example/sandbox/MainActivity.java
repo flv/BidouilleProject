@@ -26,12 +26,13 @@ public class MainActivity extends Activity {
 			NoeudsBDD nbdd = new NoeudsBDD(this);
 			nbdd.open();
 			Cursor c = nbdd.getBDD().rawQuery("select * from TABLE_NOEUDS;", null);
+			Utils.textViewDebug(this, this, R.id.main_layout, nbdd.maBaseSQLite.CREATE_NOEUDS);
 			Utils.textViewDebug(this, this, R.id.main_layout, "Lignes dans TABLE_NOEUDS : "+c.getCount());
 			nbdd.close();
 		}
 		catch (Exception e)
 		{
-			Utils.popDebug(this, "Exception : " + e.getMessage());
+			Utils.textViewDebug(this, this, R.id.main_layout, "Exception : " + e.getMessage());
 		}
 
 	}
@@ -74,7 +75,7 @@ public class MainActivity extends Activity {
 			Utils.textViewDebug(this, this, R.id.main_layout, "Noeud créé");
 			Utils.textViewDebug(this, this, R.id.main_layout, "Nb noeuds : " + nbdd.getNbNoeuds());	
 			Utils.textViewDebug(this, this, R.id.main_layout, nbdd.getBDD().toString());
-			Utils.textViewDebug(this, this, R.id.main_layout, "Résultat de l'insert : " + nbdd.insertNoeudTests("Nom", "Code", 0, 0));
+			nbdd.insertNoeudTests("Nom", "Code", 0, 0);
 			Utils.textViewDebug(this, this, R.id.main_layout, "Nb noeuds : " + nbdd.getNbNoeuds());
 			nbdd.close();
 			Utils.textViewDebug(this, this, R.id.main_layout, "Bd fermée");
