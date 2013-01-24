@@ -1,5 +1,6 @@
 package com.example.sandbox;
 
+import com.example.NoeudsSQLite.NoeudsBDD;
 import com.example.sqllite.*;
 import Utils.*;
 import android.app.Activity;
@@ -30,32 +31,32 @@ public class DisplayMessageActivity extends Activity {
 			View linearLayout = findViewById(R.id.received_message_layout);
 			
 			// Get origin intent
-			Intent my_intent = getIntent();
+			// Intent my_intent = getIntent();
 			
 			// Utilisation de la bd sqlite
 			
-			LivresBDD livreBdd = new LivresBDD(this);
-			livreBdd.open();
+			NoeudsBDD nbdd = new NoeudsBDD(this);
+			nbdd.open();
 			
-			int nbLignes = livreBdd.getNbLivre();
-			TextView[] books = new TextView[nbLignes];
+			int nbLignes = nbdd.getNbNoeuds();
+			TextView[] nodes = new TextView[nbLignes];
 			for (int i = 0; i < nbLignes; i ++)
 			{
 				
 				// Create the text view
-				books[i] = new TextView(this);
-				books[i].setText(livreBdd.getLivreWithId(i+1).toString());
+				nodes[i] = new TextView(this);
+				nodes[i].setText(nbdd.getNoeudById(i).toString());
 				
-				books[i].setLayoutParams(new LayoutParams(
+				nodes[i].setLayoutParams(new LayoutParams(
 						LayoutParams.WRAP_CONTENT,
 						LayoutParams.WRAP_CONTENT));
 				
 				// Add the text view to the activity layout
 				
-				((ViewGroup) linearLayout).addView(books[i]);
+				((ViewGroup) linearLayout).addView(nodes[i]);
 			}
 			
-			livreBdd.close();
+			nbdd.close();
 			
 
 

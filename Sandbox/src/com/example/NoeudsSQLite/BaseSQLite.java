@@ -7,14 +7,14 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 
 public class BaseSQLite extends SQLiteOpenHelper {
 
-	private static final String TABLE_NOEUDS = "table_noeuds";
+	private static final String TABLE_NOEUDS = "TABLE_NOEUDS";
 	private static final String COL_CLE = "CLE";
 	private static final String COL_NOM = "NOM";
 	private static final String COL_QRCODE = "QRCODE";
 	private static final String COL_PERE = "PERE";
 	private static final String COL_META = "META";
 	
-	private static final String TABLE_META = "table_meta";
+	private static final String TABLE_META = "TABLE_META";
 	private static final String COL_CLE_META = "CLE";
 	private static final String COL_TYPE = "TYPE_METADONNEE";
 	private static final String COL_CONTENU = "CONTENU_METADONNEE";
@@ -24,8 +24,8 @@ public class BaseSQLite extends SQLiteOpenHelper {
 			+ COL_QRCODE + " TEXT NOT NULL, " + COL_PERE + "INTEGER, " + COL_META + "INTEGER);";
 	
 	private static final String CREATE_META = "CREATE TABLE " + TABLE_META + " ("
-			+ COL_CLE_META + "INTEGER NOT NULL " + COL_TYPE + "TEXT NOT NULL, "
-			+ COL_CONTENU + "TEXT NOT NULL, PRIMARYKEY("+ COL_CLE_META + ", " + COL_TYPE +"));";
+			+ COL_CLE_META + " INTEGER NOT NULL, " + COL_TYPE + " TEXT NOT NULL, "
+			+ COL_CONTENU + " TEXT NOT NULL, PRIMARY KEY("+ COL_CLE_META + ", " + COL_TYPE +"));";
 
 	public BaseSQLite (Context context, String name, CursorFactory factory, int version) {
 		super(context, name, factory, version);

@@ -75,22 +75,48 @@ public class NoeudsBDD {
 		return curs.getCount();
 	}
 
-	public void insertNoeud(Noeud noeud)
+	public long insertNoeud(Noeud noeud) throws NoMatchableNodeException
 	{
 		//Création d'un ContentValues (fonctionne comme une HashMap)
 		ContentValues values = new ContentValues();
 		//on lui ajoute une valeur associé à une clé (qui est le nom de la colonne dans laquelle on veut mettre la valeur)
 		values.put(COL_NOM, noeud.getNom());
-		values.put(COL_PERE, noeud.getPere());
 		values.put(COL_QRCODE, noeud.getContenuQrcode());
+		values.put(COL_PERE, noeud.getPere());
 		values.put(COL_META, noeud.getMeta());
-		//on insère l'objet dans la BDD via le ContentValues
-		bdd.insert(TABLE_NOEUDS, null, values);
 		
-		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where "+ COL_NOM + " = " + noeud.getNom() + " and " +
-				COL_QRCODE + " = " + noeud.getContenuQrcode() + ";",
-				null);
-		noeud.setId(c.getInt(NUM_COL_CLE));
+		//on insère l'objet dans la BDD via le ContentValues
+		
+		return bdd.insertWithOnConflict(TABLE_NOEUDS, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+		
+		/*Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where "+ COL_NOM + " = '" + noeud.getNom() + "' and " +
+				COL_QRCODE + " = '" + noeud.getContenuQrcode() + "';",
+				null);*/
+		//Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + ";" , null);
+		//throw new NoMatchableNodeException("" + NUM_COL_CLE);
+		//noeud.setId(c.getInt(NUM_COL_CLE));*/
+	}
+	
+	public long insertNoeudTests(String nom, String code, int pere, int meta) throws NoMatchableNodeException
+	{
+		//Création d'un ContentValues (fonctionne comme une HashMap)
+		ContentValues values = new ContentValues();
+		//on lui ajoute une valeur associé à une clé (qui est le nom de la colonne dans laquelle on veut mettre la valeur)
+		values.put(COL_NOM, nom);
+		values.put(COL_QRCODE, code);
+		values.put(COL_PERE, pere);
+		values.put(COL_META, meta);
+		
+		//on insère l'objet dans la BDD via le ContentValues
+		
+		return bdd.insertWithOnConflict(TABLE_NOEUDS, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+		
+		/*Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where "+ COL_NOM + " = '" + noeud.getNom() + "' and " +
+				COL_QRCODE + " = '" + noeud.getContenuQrcode() + "';",
+				null);*/
+		//Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + ";" , null);
+		//throw new NoMatchableNodeException("" + NUM_COL_CLE);
+		//noeud.setId(c.getInt(NUM_COL_CLE));*/
 	}
 
 	public long updateNoeud(Noeud ancienNoeud, Noeud nouveauNoeud) throws NoMatchableNodeException
@@ -137,7 +163,9 @@ public class NoeudsBDD {
 	public Noeud getNoeudById(int id)
 	{
 		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_CLE + " = " + id + ";" , null);
-		return cursorToNoeud(c);
+		Noeud n =  cursorToNoeud(c);
+		n.setId(id);
+		return n;
 	}
 	
 	public Noeud getNoeudByNom(String nom)
@@ -153,7 +181,7 @@ public class NoeudsBDD {
 	}
 
 	//Cette méthode permet de convertir un cursor en un noeud
-	public Noeud cursorToNoeud(Cursor c){
+	public static Noeud cursorToNoeud(Cursor c){
 		//si aucun élément n'a été retourné dans la requête, on renvoie null
 		if (c.getCount() == 0)
 			return null;
@@ -259,13 +287,13 @@ public class NoeudsBDD {
 	public Metadata cursorToMeta(Cursor c) {
 		// TODO Auto-generated method stub
 		Metadata meta = new Metadata();
-		
+
 		meta.setId(c.getInt(NUM_COL_CLE_META));
 		meta.setType(c.getString(NUM_COL_TYPE));
 		meta.setData(c.getString(NUM_COL_CONTENU));
-		
+
 		return meta;
 	}
-	
+
 
 }
