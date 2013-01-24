@@ -13,6 +13,16 @@ public class Metadata {
 		this.type = type;
 		this.data = data;
 	}
+	
+	public Metadata() {
+		super();
+		id = 0;
+		data = "";
+		type = "";
+	}
+	
+	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */

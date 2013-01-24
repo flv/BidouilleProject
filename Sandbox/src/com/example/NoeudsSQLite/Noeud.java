@@ -9,6 +9,7 @@ public class Noeud {
 	private int pere;
 	// l'int qu'on recherchera dans la table des metadatas
 	private int meta;
+	private int id;
 	
 	public Noeud(String nom, String contenuQrcode, int pere, int meta) {
 		super();
@@ -16,6 +17,7 @@ public class Noeud {
 		this.contenuQrcode = contenuQrcode;
 		this.pere = pere;
 		this.meta = meta;
+		this.id = 0;
 	}
 	
 	
@@ -27,6 +29,7 @@ public class Noeud {
 		this.contenuQrcode = "";
 		this.pere = 0;
 		this.meta = 0;
+		this.id = 0;
 	}
 
 
@@ -82,6 +85,24 @@ public class Noeud {
 	}
 	public void setMeta(int meta) {
 		this.meta = meta;
+	}
+
+
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	
