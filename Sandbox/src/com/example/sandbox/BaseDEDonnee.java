@@ -78,8 +78,23 @@ public class BaseDEDonnee extends Activity {
         });
 //        findViewById(R.id.menu_settings).setOnTouchListener(retourMain);
         
+        
     }
     
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+      switch (item.getItemId()) {
+        case R.id.menu_settings:
+        	Intent intent = new Intent(this, MainActivity.class);
+        	String message = parent[numParent];
+        	intent.putExtra(EXTRA_MESSAGE, message);
+        	startActivity(intent);
+            break;
+        default:
+          return super.onOptionsItemSelected(item);
+      }
+      return true;
+    }
     
     public void addItemsOnSpinner2() {
     	 
