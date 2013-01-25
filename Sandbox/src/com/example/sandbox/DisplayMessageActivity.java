@@ -1,5 +1,9 @@
 package com.example.sandbox;
 
+import com.example.sandbox.R;
+import com.example.sandbox.R.id;
+import com.example.sandbox.R.layout;
+import com.example.sandbox.R.menu;
 import com.example.sqllite.*;
 import Utils.*;
 import android.app.Activity;
@@ -67,12 +71,11 @@ public class DisplayMessageActivity extends Activity {
 
 	}
 
-	/*@Override
-	public void onResume(){
-
-		super.onResume();
-
-	}*/
+	public void goToAccueil(View view) {
+    	Intent intent = new Intent(this, Accueil.class);
+    	
+    	startActivity(intent);
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -27,6 +27,29 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.sandbox.MainActivity" />
         </activity>
+        <activity
+            android:name=".Accueil"
+            android:label="@string/title_activity_accueil" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".BaseDEDonnee"
+            android:label="@string/title_activity_base_dedonnee" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.sandbox.Accueil" />
+        </activity>
+        <activity
+            android:name=".PriseDuQrcode"
+            android:label="@string/title_activity_prise_du_qrcode" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.sandbox.Accueil" />
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000" >
+
+<Button
+    android:id="@+id/element"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="168dp"
+    android:onClick="goToBiduleBDD"
+    android:text="affichage de la base de donnée" />
+
+<Button
+    android:id="@+id/Qrcode"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/element"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="51dp"
+    android:onClick="goToTakeQrcode"
+    android:text="Capture d'un Qrcode" />
+
+</RelativeLayout>
