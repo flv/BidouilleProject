@@ -44,32 +44,16 @@
         android:layout_height="wrap_content"
         android:onClick="retourParent"
         android:text="backInformation" />
-    
-    
-    <ScrollView 
-    	android:layout_width="fill_parent"
-    	android:layout_height="fill_parent"
-    	android:textColor="#FF0000"
-    	android:orientation="vertical" >
-    
-    <RadioGroup
-        android:id="@+id/radioAterissage"
-        android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:textColor="#FFFFFF"
-    android:orientation="vertical">
+  
 
-        <RadioButton
-            android:id="@+id/radioButton"
-        android:layout_width="wrap_content" 
+        	
+	<ListView
+        android:id="@+id/mylist"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="26dp"
-        android:textColor="#FFFFFF"
-        android:text="Rouge"/>
+        android:textColor="#FFFFFF">
+    </ListView>
+		    		    
 
-        
-    </RadioGroup>
-    </ScrollView>
 
 </LinearLayout>

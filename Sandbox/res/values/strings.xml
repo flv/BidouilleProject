@@ -7,11 +7,11 @@
     <string name="edit_message">Entrer un message</string>
     <string name="button_send">Send</string>
     <string name="title_activity_display_message">MyMessage</string>
-    <string name="title_activity_accueil">The super accueil</string>
+ 
     <string name="ISBN_Message">Enter ISBN</string>
     <string name="Title_Message">Enter a Title</string>
     <string name="parent">Entrer un parent</string>
-    <string name="title_activity_acueil">Acueil</string>
+    <string name="title_activity_accueil">Acueil</string>
     <string name="title_activity_base_dedonnee">BaseDEDonnee</string>
     <string name="title_activity_prise_du_qrcode">PriseDuQrcode</string>
     

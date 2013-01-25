@@ -3,6 +3,7 @@ package com.example.sandbox;
 import java.util.ArrayList;
 import java.util.List;
 
+import Utils.Utils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
@@ -10,11 +11,19 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
@@ -26,11 +35,11 @@ import android.support.v4.app.NavUtils;
 
 public class BaseDEDonnee extends Activity {
 	public final static String EXTRA_MESSAGE = "null";
-	public String parent = "null";
+	private String[] parent;
+	private int numParent;
 	private Spinner spinner2;
 	private Button btnSubmit;
-	private RadioGroup radioView;
-	private RadioButton radioButton;
+
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,17 +49,37 @@ public class BaseDEDonnee extends Activity {
         addItemsOnSpinner2();
         addListenerOnButton();
         
-        /*****************scollll*******************************/
-        radioView = (RadioGroup) this.findViewById(R.id.radioAterissage);
         
-        for(int i=0;i<=10;i++){
-        	radioButton = new RadioButton(this);
-        	radioButton = (RadioButton) findViewById(R.id.radioButton);
-        	radioButton.setText("sadfasdfasdfasdfasdfasd fasdfsadfsadf");
-        }
+        /*****************scollll*******************************/    
         
+        ListView listeNom = (ListView) this.findViewById(R.id.mylist);
+        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+        		"Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+        		"Linux", "OS/2" };
+        parent = values;
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        		android.R.layout.simple_list_item_1, android.R.id.text1, values);
+        listeNom.setAdapter(adapter); 
+        listeNom.setOnItemClickListener(new ListView.OnItemClickListener(){
+        	@Override
+        	public void onItemClick(AdapterView<?> a, View v, int i, long l){
+        		try {
+        			Toast.makeText(getApplicationContext(), "youhou : " + Integer.toString(i), 3).show();
+        			numParent = i;
+        			openOptionsMenu();
+        			//TODO Appeler activite suivante avec en paramètre l'id de l'element selectionne
+        			//TODO reussir a lier l'id de la liste avec l'id du noeud (metier)     			
+        			
+        		}
+        		catch (Exception e) {
+        			Toast.makeText(getApplicationContext(), "osef ", 3).show();
+        		}
+        	}
+        });
+//        findViewById(R.id.menu_settings).setOnTouchListener(retourMain);
         
     }
+    
     
     public void addItemsOnSpinner2() {
     	 
@@ -58,7 +87,7 @@ public class BaseDEDonnee extends Activity {
     	List<String> list = new ArrayList<String>();
     	list.add("list 1");
     	list.add("list 2");
-    	list.add("list 3");
+    	list.add("list 4");
 
     	ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
     	dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -78,9 +107,9 @@ public class BaseDEDonnee extends Activity {
     	  @Override
     	  public void onClick(View v) {
      
-    	    Toast.makeText(BaseDEDonnee.this,
-    		"OnClickListener : " + "\nSpinner 2 : "+ String.valueOf(spinner2.getSelectedItem()),
-    			Toast.LENGTH_SHORT).show();
+//    	    Toast.makeText(BaseDEDonnee.this,
+//    		"OnClickListener : " + "\nSpinner 2 : "+ String.valueOf(spinner2.getSelectedItem()),
+//    			Toast.LENGTH_SHORT).show();
     	  }
      
     	});
@@ -89,7 +118,7 @@ public class BaseDEDonnee extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_base_dedonnee, menu);
+        getMenuInflater().inflate(R.menu.activity_base_dedonnee, menu);              
         return true;
     }
     
@@ -100,7 +129,7 @@ public class BaseDEDonnee extends Activity {
     
     public void retourParent(View view) {
     	Intent intent = new Intent(this, MainActivity.class);
-    	String message = parent = String.valueOf(spinner2.getSelectedItem());
+    	String message = parent[numParent];
     	intent.putExtra(EXTRA_MESSAGE, message);
     	startActivity(intent);
     }
