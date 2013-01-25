@@ -1,0 +1,1 @@
+/info-nfs/opt/Android-sdk/android-sdk-linux/platform-tools/aapt package --non-constant-id -f -m -M AndroidManifest.xml -S res/ -I /info-nfs/opt/Android-sdk/android-sdk-linux/platforms/android-10/android.jar -J gen/com/example/sandbox/ --generate-dependencies
