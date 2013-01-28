@@ -26,7 +26,6 @@ public class MainActivity extends Activity {
 			NoeudsBDD nbdd = new NoeudsBDD(this);
 			nbdd.open();
 			nbdd.raz();
-			Cursor c = nbdd.getBDD().rawQuery("select * from TABLE_NOEUDS;", null);
 			nbdd.close();
 		}
 		catch (Exception e)
@@ -49,6 +48,11 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	public void toMeta(View view) {
+		Intent intent = new Intent(this, MetaInsertActivity.class);
+		startActivity(intent);
+	}
+	
 	public void sendMessage(View view){
 
 		Intent intent = new Intent(this, DisplayMessageActivity.class);
@@ -69,7 +73,6 @@ public class MainActivity extends Activity {
 			
 			NoeudsBDD nbdd = new NoeudsBDD(this);
 			nbdd.open();
-			nbdd.raz();
 			nbdd.insertNoeud(new Noeud(NAME, QRCODE, 0, nbdd.getNbNoeuds()));
 			nbdd.close();
 

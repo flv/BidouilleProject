@@ -217,7 +217,7 @@ public class NoeudsBDD {
 	
 	public void insertMeta(Metadata meta) throws NoMatchableNodeException
 	{
-		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + "where " + COL_CLE + " = " + meta.getId() +";",
+		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_CLE + " = " + meta.getId() +";",
 				null);
 		if (c.getCount() == 0)
 		{
@@ -251,25 +251,29 @@ public class NoeudsBDD {
 		}
 	}
 	
-	public Metadata[] getMetasById(int id)
+	public Metadata[] getMetasById(int id) throws NoMatchableNodeException
 	{
 		Cursor c = bdd.rawQuery("select * from " + TABLE_META + " where " + COL_CLE_META + " = " + id + ";", null);
 		int nbRes = c.getCount();
 		if (nbRes == 0)
 		{
-			return null;
+			throw new NoMatchableNodeException("Pas de metadonnées à cet id");
 		}
 		Metadata[] metas = new Metadata[this.getNbMeta()];
+		c.moveToFirst();
 		for (int i = 0; i < nbRes; i ++)
 		{
-			c.move(i);
 			metas[i] = cursorToMeta(c);
+			if (c.getCount() != i + 1)
+			{
+				c.move(1);
+			}
 		}
 		c.close();
 		return metas;
 	}
 	
-	public Metadata getMetaByIdType(int id, String type)
+	/*public Metadata getMetaByIdType(int id, String type)
 	{
 		Cursor c = bdd.rawQuery("select * from " + TABLE_META + " where " 
 								+ COL_CLE_META  + " = " + id + " and " 
@@ -282,16 +286,14 @@ public class NoeudsBDD {
 		
 		c.moveToFirst();
 		return cursorToMeta(c);
-	}
+	}*/
 
-	public Metadata cursorToMeta(Cursor c) {
+	public Metadata cursorToMeta(Cursor c) throws NoMatchableNodeException {
 		// TODO Auto-generated method stub
 		Metadata meta = new Metadata();
-
 		meta.setId(c.getInt(NUM_COL_CLE_META));
 		meta.setType(c.getString(NUM_COL_TYPE));
 		meta.setData(c.getString(NUM_COL_CONTENU));
-
 		return meta;
 	}
 

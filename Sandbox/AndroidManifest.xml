@@ -27,6 +27,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.sandbox.MainActivity" />
         </activity>
+        <activity 
+            android:name=".MetaInsertActivity"
+            android:label="@string/title_activity_meta_insert" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.exemple.sandbox.MainActivity" />
+        </activity>
+        <activity 
+            android:name=".MetaDisplayActivity"
+            android:label="@string/title_activity_meta_display" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.exemple.sandbox.MetaInsertActivity" />
+        </activity>
     </application>
 
 </manifest>

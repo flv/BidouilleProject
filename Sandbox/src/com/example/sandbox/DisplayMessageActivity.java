@@ -26,14 +26,9 @@ public class DisplayMessageActivity extends Activity {
 		
 		try 
 		{
-			setContentView(R.layout.activity_display_message);
+			setContentView(R.layout.activity_display_noeuds);
 			
 			View linearLayout = findViewById(R.id.received_message_layout);
-			
-			// Get origin intent
-			// Intent my_intent = getIntent();
-			
-			// Utilisation de la bd sqlite
 			
 			NoeudsBDD nbdd = new NoeudsBDD(this);
 			nbdd.open();
@@ -42,7 +37,6 @@ public class DisplayMessageActivity extends Activity {
 			Utils.textViewDebug(this, this, R.id.received_message_layout, "Bdd lue : " + nbLignes + " noeuds dans la base");
 
 			TextView[] nodes = new TextView[nbLignes];
-			//Utils.textViewDebug(this, this, R.id.received_message_layout, "init de nodes");
 			
 			for (int i = 0; i < nbLignes; i ++)
 			{
