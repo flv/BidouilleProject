@@ -34,6 +34,13 @@ public class BaseSQLite extends SQLiteOpenHelper {
 			+ COL_CONTENU + " TEXT NOT NULL ,"
 			+ " PRIMARY KEY ("+ COL_CLE_META + " , " + COL_TYPE +" )" 
 			+ " );";
+	
+	public static final String CREATE_RACINE = "INSERT INTO TABLE_NOEUDS ("+COL_CLE+", "
+												+ COL_NOM + ", " 
+												+ COL_QRCODE + ", "
+												+ COL_PERE + ", " 
+												+ COL_META + ") " 
+												+ " VALUES (0, 'Racine', 'Rien', 0, 0);";
 
 	public BaseSQLite (Context context, String name, CursorFactory factory, int version) {
 		super(context, name, factory, version);
@@ -44,6 +51,7 @@ public class BaseSQLite extends SQLiteOpenHelper {
 		//on créé la table à partir de la requête écrite dans la variable CREATE_BDD
 		db.execSQL(CREATE_NOEUDS);
 		db.execSQL(CREATE_META);
+		db.execSQL(CREATE_RACINE);
 	}
 
 	@Override
@@ -51,6 +59,7 @@ public class BaseSQLite extends SQLiteOpenHelper {
 		//On peut fait ce qu'on veut ici moi j'ai décidé de supprimer la table et de la recréer
 		//comme ça lorsque je change la version les id repartent de 0
 		db.execSQL("DROP TABLE " + TABLE_NOEUDS + ";");
+		db.execSQL("DROP TABLE " + TABLE_META + ";");
 		onCreate(db);
 	}
 }

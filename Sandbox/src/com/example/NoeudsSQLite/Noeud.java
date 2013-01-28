@@ -9,6 +9,11 @@ public class Noeud {
 	private int pere;
 	// l'int qu'on recherchera dans la table des metadatas
 	private int meta;
+	/*
+	 * Si id == 0 : le noeud n'a pas été inséré dans la bdd
+	 * Sinon : le noeud a été inséré dans la bdd depuis l'application ou a été créé dans l'application après lecture de la bdd :
+	 * 			=> dans les deux cas le noeud est présent dans la bdd
+	 */
 	private int id;
 	
 	public Noeud(String nom, String contenuQrcode, int pere, int meta) {

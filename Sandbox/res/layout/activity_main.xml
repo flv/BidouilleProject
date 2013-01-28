@@ -6,16 +6,16 @@
     android:orientation="vertical" >
 
     <EditText
-        android:id="@+id/isbn_edit_message"
+        android:id="@+id/node_name_message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/ISBN_Message" />
+        android:hint="@string/NAME_Message" />
     
     <EditText
-        android:id="@+id/title_edit_message"
+        android:id="@+id/qrcode_content_message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/Title_Message"/>
+        android:hint="@string/QRCODE_Message"/>
 
     <Button
         android:layout_width="fill_parent"

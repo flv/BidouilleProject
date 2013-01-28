@@ -37,16 +37,19 @@ public class DisplayMessageActivity extends Activity {
 			
 			NoeudsBDD nbdd = new NoeudsBDD(this);
 			nbdd.open();
-			
+
 			int nbLignes = nbdd.getNbNoeuds();
+			Utils.textViewDebug(this, this, R.id.received_message_layout, "Bdd lue : " + nbLignes + " noeuds dans la base");
+
 			TextView[] nodes = new TextView[nbLignes];
+			//Utils.textViewDebug(this, this, R.id.received_message_layout, "init de nodes");
+			
 			for (int i = 0; i < nbLignes; i ++)
 			{
-				
+
 				// Create the text view
 				nodes[i] = new TextView(this);
-				nodes[i].setText(nbdd.getNoeudById(i).toString());
-				
+				nodes[i].setText(nbdd.getNoeudById(i).toString());		
 				nodes[i].setLayoutParams(new LayoutParams(
 						LayoutParams.WRAP_CONTENT,
 						LayoutParams.WRAP_CONTENT));
@@ -55,6 +58,7 @@ public class DisplayMessageActivity extends Activity {
 				
 				((ViewGroup) linearLayout).addView(nodes[i]);
 			}
+			Utils.textViewDebug(this, this, R.id.received_message_layout, "Tous les noeuds de la bdd lus.");
 			
 			nbdd.close();
 			

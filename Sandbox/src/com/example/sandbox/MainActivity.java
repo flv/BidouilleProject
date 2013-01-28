@@ -25,14 +25,13 @@ public class MainActivity extends Activity {
 		{
 			NoeudsBDD nbdd = new NoeudsBDD(this);
 			nbdd.open();
+			nbdd.raz();
 			Cursor c = nbdd.getBDD().rawQuery("select * from TABLE_NOEUDS;", null);
-			Utils.textViewDebug(this, this, R.id.main_layout, nbdd.maBaseSQLite.CREATE_NOEUDS);
-			Utils.textViewDebug(this, this, R.id.main_layout, "Lignes dans TABLE_NOEUDS : "+c.getCount());
 			nbdd.close();
 		}
 		catch (Exception e)
 		{
-			Utils.textViewDebug(this, this, R.id.main_layout, "Exception : " + e.getMessage());
+			Utils.popDebug(this, "Exception : " + e.getMessage());
 		}
 
 	}
@@ -54,8 +53,8 @@ public class MainActivity extends Activity {
 
 		Intent intent = new Intent(this, DisplayMessageActivity.class);
 
-		EditText name = (EditText) findViewById(R.id.isbn_edit_message);
-		EditText qrcode = (EditText) findViewById(R.id.title_edit_message);
+		EditText name = (EditText) findViewById(R.id.node_name_message);
+		EditText qrcode = (EditText) findViewById(R.id.qrcode_content_message);
 
 		if (!name.getText().toString().equals(""))
 		{
@@ -69,23 +68,16 @@ public class MainActivity extends Activity {
 		try {
 			
 			NoeudsBDD nbdd = new NoeudsBDD(this);
-			Utils.textViewDebug(this, this, R.id.main_layout, "Bd instanciée");
 			nbdd.open();
-			Utils.textViewDebug(this, this, R.id.main_layout, "Bd ouverte");
-			Utils.textViewDebug(this, this, R.id.main_layout, "Noeud créé");
-			Utils.textViewDebug(this, this, R.id.main_layout, "Nb noeuds : " + nbdd.getNbNoeuds());	
-			Utils.textViewDebug(this, this, R.id.main_layout, nbdd.getBDD().toString());
-			nbdd.insertNoeudTests("Nom", "Code", 0, 0);
-			Utils.textViewDebug(this, this, R.id.main_layout, "Nb noeuds : " + nbdd.getNbNoeuds());
+			nbdd.raz();
+			nbdd.insertNoeud(new Noeud(NAME, QRCODE, 0, nbdd.getNbNoeuds()));
 			nbdd.close();
-			Utils.textViewDebug(this, this, R.id.main_layout, "Bd fermée");
 
 		}
 		catch (Exception e)
 		{
 			Utils.textViewDebug(this, this, R.id.main_layout, e.getMessage());
 		}
-		//Utils.popDebug(this, "Main Activity ok");
 		startActivity(intent);
 	}
 }

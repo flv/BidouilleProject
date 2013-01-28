@@ -92,33 +92,13 @@ public class NoeudsBDD {
 		
 		/*Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where "+ COL_NOM + " = '" + noeud.getNom() + "' and " +
 				COL_QRCODE + " = '" + noeud.getContenuQrcode() + "';",
-				null);*/
+				null);
 		//Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + ";" , null);
 		//throw new NoMatchableNodeException("" + NUM_COL_CLE);
-		//noeud.setId(c.getInt(NUM_COL_CLE));*/
-	}
-	
-	public long insertNoeudTests(String nom, String code, int pere, int meta)
-	{
-		//Création d'un ContentValues (fonctionne comme une HashMap)
-		ContentValues values = new ContentValues();
-		//on lui ajoute une valeur associé à une clé (qui est le nom de la colonne dans laquelle on veut mettre la valeur)
-		values.put(COL_PERE, pere);
-		values.put(COL_META, meta);
-		values.put(COL_NOM, nom);
-		values.put(COL_QRCODE, code);
+		//noeud.setId(c.getInt(NUM_COL_CLE));
 		
-		
-		//on insère l'objet dans la BDD via le ContentValues
-		
-		return bdd.insertWithOnConflict(TABLE_NOEUDS, null, values, SQLiteDatabase.CONFLICT_REPLACE);
-		
-		/*Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where "+ COL_NOM + " = '" + noeud.getNom() + "' and " +
-				COL_QRCODE + " = '" + noeud.getContenuQrcode() + "';",
-				null);*/
-		//Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + ";" , null);
-		//throw new NoMatchableNodeException("" + NUM_COL_CLE);
-		//noeud.setId(c.getInt(NUM_COL_CLE));*/
+		Ici implémenter la gestion de l'attribut id de l'objet noeud		
+		*/
 	}
 
 	public long updateNoeud(Noeud ancienNoeud, Noeud nouveauNoeud) throws NoMatchableNodeException
@@ -162,24 +142,42 @@ public class NoeudsBDD {
 		
 	}
 
-	public Noeud getNoeudById(int id)
+	public Noeud getNoeudById(int id) throws NoMatchableNodeException
 	{
 		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_CLE + " = " + id + ";" , null);
-		Noeud n =  cursorToNoeud(c);
-		n.setId(id);
-		return n;
+		if (c.getCount() == 0)
+		{
+			throw new NoMatchableNodeException("Aucun résultat pour getNoeudById(" + id +")");
+		}
+		else {
+			Noeud n =  cursorToNoeud(c);
+			n.setId(id);
+			return n;
+		}
 	}
 	
-	public Noeud getNoeudByNom(String nom)
+	public Noeud getNoeudByNom(String nom) throws NoMatchableNodeException
 	{
 		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_NOM + " = " + nom + ";", null);
-		return cursorToNoeud(c);
+		if (c.getCount() == 0)
+		{
+			throw new NoMatchableNodeException("Aucun résultat pour getNoeudByNom(" + nom +")");
+		}
+		else {
+			return cursorToNoeud(c);
+		}
 	}	
 	
-	public Noeud getNoeudByCode(String code)
+	public Noeud getNoeudByCode(String code) throws NoMatchableNodeException
 	{
 		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_QRCODE + " = " +code + ";", null);
-		return cursorToNoeud(c);
+		if (c.getCount() == 0)
+		{
+			throw new NoMatchableNodeException("Aucun résultat pour getNoeudByCode(" + code +")");
+		}
+		else {
+			return cursorToNoeud(c);
+		}
 	}
 
 	//Cette méthode permet de convertir un cursor en un noeud

@@ -8,8 +8,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Affichage de la BD"
-        android:textSize="40px" />
+        android:text="Affichage de la BD : "
+        android:textSize="20dp" />
 
     <LinearLayout
         android:id="@+id/received_message_layout"
@@ -19,10 +19,5 @@
         android:orientation="vertical">
 
     </LinearLayout>
-
-    <RatingBar
-        android:id="@+id/ratingBar1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>
