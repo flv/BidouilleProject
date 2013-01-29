@@ -17,6 +17,13 @@
         android:layout_height="wrap_content"
         android:hint="@string/QRCODE_Message"/>
 
+    <EditText
+        android:id="@+id/node_description_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/DESCRIPTION_Message" />
+
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

@@ -11,10 +11,12 @@ public class DatabaseConstants {
 	public static final int NUM_COL_NOM = 1;
 	public static final String COL_QRCODE = "QRCODE";
 	public static final int NUM_COL_QRCODE = 2;
+	public static final String COL_DESCRIPTION = "DESCRIPTION";
+	public static final int NUM_COL_DESCRIPTION = 3;;
 	public static final String COL_PERE = "PERE";
-	public static final int NUM_COL_PERE = 3;
+	public static final int NUM_COL_PERE = 4;
 	public static final String COL_META = "METADONNEES";
-	public static final int NUM_COL_META = 4;
+	public static final int NUM_COL_META = 5;
 
 	public static final String TABLE_META = "TABLE_META";
 	public static final String COL_CLE_META = "CLE_META";

@@ -45,8 +45,8 @@ public class NodeDisplayActivity extends Activity {
 				Noeud tmp = nbdd.getNoeudById(i);
 				buttons.add(new Button(this));
 				Button btmp = buttons.get(buttons.size() - 1);
-				btmp.setText("Noeud : " + tmp.getId() +" " + tmp.getNom() + "\n " 
-						+ "Id père : " + tmp.getPere());
+				btmp.setText("Noeud : " + tmp.getId() +" " + tmp.getNom() + "Id père : " + tmp.getPere() 
+										+ " \n" + " Description : " + tmp.getDescription());
 				btmp.setLayoutParams(new LayoutParams(
 						LayoutParams.FILL_PARENT,
 						LayoutParams.WRAP_CONTENT));

@@ -1,9 +1,4 @@
 package com.example.NoeudsSQLite;
-
-import com.example.sandbox.R;
-import com.example.sqllite.Livre;
-import com.example.sqllite.MaBaseSQLite;
-
 import Data.DatabaseConstants;
 import Utils.Utils;
 import android.content.ContentValues;
@@ -24,6 +19,8 @@ public class NoeudsBDD {
 	private static final int NUM_COL_NOM = DatabaseConstants.NUM_COL_NOM;
 	private static final String COL_QRCODE = DatabaseConstants.COL_QRCODE;
 	private static final int NUM_COL_QRCODE = DatabaseConstants.NUM_COL_QRCODE;
+	private static final String COL_DESCRIPTION = DatabaseConstants.COL_DESCRIPTION;
+	private static final int NUM_COL_DESCRIPTION = DatabaseConstants.NUM_COL_DESCRIPTION;
 	private static final String COL_PERE = DatabaseConstants.COL_PERE;
 	private static final int NUM_COL_PERE = DatabaseConstants.NUM_COL_PERE;
 	private static final String COL_META = DatabaseConstants.COL_META;
@@ -86,6 +83,7 @@ public class NoeudsBDD {
 		//on lui ajoute une valeur associé à une clé (qui est le nom de la colonne dans laquelle on veut mettre la valeur)
 		values.put(COL_NOM, noeud.getNom());
 		values.put(COL_QRCODE, noeud.getContenuQrcode());
+		values.put(COL_DESCRIPTION, noeud.getDescription());
 		values.put(COL_PERE, noeud.getPere());
 		values.put(COL_META, noeud.getMeta());
 		
@@ -113,6 +111,7 @@ public class NoeudsBDD {
 		values.put(COL_NOM, nouveauNoeud.getNom());
 		values.put(COL_PERE, nouveauNoeud.getPere());
 		values.put(COL_QRCODE, nouveauNoeud.getContenuQrcode());
+		values.put(COL_DESCRIPTION, nouveauNoeud.getDescription());
 		values.put(COL_META, nouveauNoeud.getMeta());
 		
 		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_CLE + " = " + ancienNoeud.getId() + ";", null);
@@ -194,13 +193,14 @@ public class NoeudsBDD {
 		//On créé un livre
 		Noeud noeud = new Noeud();
 		//on lui affecte toutes les infos grâce aux infos contenues dans le Cursor
+		noeud.setId(c.getInt(NUM_COL_CLE));
 		noeud.setNom(c.getString(NUM_COL_NOM));
-		noeud.setPere(c.getInt(NUM_COL_PERE));
 		noeud.setContenuQrcode(c.getString(NUM_COL_QRCODE));
+		noeud.setDescription(c.getString(NUM_COL_DESCRIPTION));
+		noeud.setPere(c.getInt(NUM_COL_PERE));
 		noeud.setMeta(c.getInt(NUM_COL_META));
 		//On ferme le cursor
 		c.close();
-
 		//On retourne le noeud
 		return noeud;
 	}

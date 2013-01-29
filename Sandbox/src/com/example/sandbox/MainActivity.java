@@ -15,6 +15,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 	public static String NAME = "Name_stub";
 	public static String QRCODE = "QR_stub";
+	public static String DESCRIPTION = "Desc_stub";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class MainActivity extends Activity {
 		}
 		catch (Exception e)
 		{
-			Utils.popDebug(this, "Exception : " + e.getMessage());
+			Utils.textViewDebug(this, this, R.id.main_layout, e.getMessage());
 		}
 
 	}
@@ -40,6 +41,7 @@ public class MainActivity extends Activity {
 		super.onResume();
 		NAME = "Name_stub";
 		QRCODE = "QR_stub";
+		DESCRIPTION = "Desc_stub";
 	}
 
 	@Override
@@ -59,6 +61,7 @@ public class MainActivity extends Activity {
 
 		EditText name = (EditText) findViewById(R.id.node_name_message);
 		EditText qrcode = (EditText) findViewById(R.id.qrcode_content_message);
+		EditText desc = (EditText) findViewById(R.id.node_description_message);
 
 		if (!name.getText().toString().equals(""))
 		{
@@ -68,12 +71,16 @@ public class MainActivity extends Activity {
 		{
 			QRCODE = qrcode.getText().toString();
 		}
+		if (!desc.getText().toString().equals(""))
+		{
+			DESCRIPTION = desc.getText().toString();
+		}
 
 		try {
 			
 			NoeudsBDD nbdd = new NoeudsBDD(this);
 			nbdd.open();
-			nbdd.insertNoeud(new Noeud(NAME, QRCODE, 0, nbdd.getNbNoeuds()));
+			nbdd.insertNoeud(new Noeud(NAME, QRCODE, DESCRIPTION, 0, nbdd.getNbNoeuds()));
 			nbdd.close();
 
 		}
