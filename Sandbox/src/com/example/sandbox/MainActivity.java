@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
 	
 	public void sendMessage(View view){
 
-		Intent intent = new Intent(this, DisplayMessageActivity.class);
+		Intent intent = new Intent(this, NodeDisplayActivity.class);
 
 		EditText name = (EditText) findViewById(R.id.node_name_message);
 		EditText qrcode = (EditText) findViewById(R.id.qrcode_content_message);

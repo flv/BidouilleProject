@@ -1,5 +1,6 @@
 package com.example.NoeudsSQLite;
 
+import com.example.sandbox.R;
 import com.example.sqllite.Livre;
 import com.example.sqllite.MaBaseSQLite;
 
@@ -14,7 +15,8 @@ public class NoeudsBDD {
 
 	private static final int VERSION_BDD = 1;
 	private static final String NOM_BDD = "Synchrotags.db";
-
+	
+	// Champs de la table table_noeuds	
 	private static final String TABLE_NOEUDS = DatabaseConstants.TABLE_NOEUDS;
 	private static final String COL_CLE = DatabaseConstants.COL_CLE;
 	private static final int NUM_COL_CLE = DatabaseConstants.NUM_COL_CLE;
@@ -27,6 +29,7 @@ public class NoeudsBDD {
 	private static final String COL_META = DatabaseConstants.COL_META;
 	private static final int NUM_COL_META = DatabaseConstants.NUM_COL_META;
 
+	// Champs de la table table_meta
 	private static final String TABLE_META = DatabaseConstants.TABLE_META;
 	private static final String COL_CLE_META = DatabaseConstants.COL_CLE_META;
 	private static final int NUM_COL_CLE_META = DatabaseConstants.NUM_COL_CLE_META;
@@ -217,6 +220,7 @@ public class NoeudsBDD {
 	
 	public void insertMeta(Metadata meta) throws NoMatchableNodeException
 	{
+		System.out.println("Insert de " + meta.toString());
 		Cursor c = bdd.rawQuery("select * from " + TABLE_NOEUDS + " where " + COL_CLE + " = " + meta.getId() +";",
 				null);
 		if (c.getCount() == 0)
@@ -229,10 +233,13 @@ public class NoeudsBDD {
 			ContentValues values = new ContentValues();
 			//on lui ajoute une valeur associé à une clé (qui est le nom de la colonne dans laquelle on veut mettre la valeur)
 			values.put(COL_CLE_META, meta.getId());
+			System.out.println("clé méta : " + meta.getId());
 			values.put(COL_TYPE, meta.getType());
+			System.out.println("type méta : " + meta.getType());
 			values.put(COL_CONTENU, meta.getData());
+			System.out.println("contenu méta : " + meta.getData());
 			//on insère l'objet dans la BDD via le ContentValues
-			bdd.insert(TABLE_META, null, values);
+			bdd.insertWithOnConflict(TABLE_META, null, values, SQLiteDatabase.CONFLICT_REPLACE);
 		}
 	}
 	
@@ -253,14 +260,21 @@ public class NoeudsBDD {
 	
 	public Metadata[] getMetasById(int id) throws NoMatchableNodeException
 	{
-		Cursor c = bdd.rawQuery("select * from " + TABLE_META + " where " + COL_CLE_META + " = " + id + ";", null);
+		Metadata[] metas;
+		Cursor c = bdd.rawQuery("select * from " + TABLE_META + " where (" + COL_CLE_META + " = " + id + ");", null);
+		System.out.println("select * from " + TABLE_META + " where (" + COL_CLE_META + " = " + id + ");");
 		int nbRes = c.getCount();
-		if (nbRes == 0)
-		{
-			throw new NoMatchableNodeException("Pas de metadonnées à cet id");
+		
+		if (nbRes == 0) {
+			metas = new Metadata[0];
+			System.out.println("nbRes == 0, longueur de metadata : " + metas.length);
+			return metas;			
 		}
-		Metadata[] metas = new Metadata[this.getNbMeta()];
+		
+		 metas = new Metadata[c.getCount()];
+		
 		c.moveToFirst();
+		
 		for (int i = 0; i < nbRes; i ++)
 		{
 			metas[i] = cursorToMeta(c);
@@ -270,25 +284,25 @@ public class NoeudsBDD {
 			}
 		}
 		c.close();
+		System.out.println("longueur de metadata : " + metas.length);
 		return metas;
 	}
 	
-	/*public Metadata getMetaByIdType(int id, String type)
+	/*public Metadata[] getAllMetas()
 	{
-		Cursor c = bdd.rawQuery("select * from " + TABLE_META + " where " 
-								+ COL_CLE_META  + " = " + id + " and " 
-								+ COL_TYPE + " = " + type + ";", 
+		Cursor c = bdd.rawQuery("select * from " + TABLE_META + ";", 
 								null);
 		if (c.getCount() == 0) 
 		{
-			return null;
+			return new Metadata[0];
 		}
 		
+		metas = new Metadata[c.getCount()];
 		c.moveToFirst();
 		return cursorToMeta(c);
 	}*/
 
-	public Metadata cursorToMeta(Cursor c) throws NoMatchableNodeException {
+	public Metadata cursorToMeta(Cursor c){
 		// TODO Auto-generated method stub
 		Metadata meta = new Metadata();
 		meta.setId(c.getInt(NUM_COL_CLE_META));

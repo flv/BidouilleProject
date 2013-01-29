@@ -17,7 +17,7 @@ public class DatabaseConstants {
 	public static final int NUM_COL_META = 4;
 
 	public static final String TABLE_META = "TABLE_META";
-	public static final String COL_CLE_META = "CLE";
+	public static final String COL_CLE_META = "CLE_META";
 	public static final int NUM_COL_CLE_META = 0;
 	public static final String COL_TYPE = "TYPE_METADONNEE";
 	public static final int NUM_COL_TYPE = 1;

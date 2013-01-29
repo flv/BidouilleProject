@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,12 @@ public abstract class Utils {
 		TextView txt1 = new TextView(context);
 		txt1.setText(message);
 		((ViewGroup) linearLayout).addView(txt1);
+	}
+	
+	public static void emptyDebugLinearLayout(Activity act, Context context, int viewId)
+	{
+		LinearLayout linearLayout = (LinearLayout) act.findViewById(viewId);
+		linearLayout.removeAllViews();
 	}
 
 }

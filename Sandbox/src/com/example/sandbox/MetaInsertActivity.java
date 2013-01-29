@@ -48,8 +48,9 @@ public class MetaInsertActivity extends Activity {
 			META_CONTENT = content.getText().toString();
 		}
 		
-		try 
+		try
 		{
+			Utils.emptyDebugLinearLayout(this, this, R.id.meta_debug_layout);
 			NoeudsBDD nbdd = new NoeudsBDD(this);
 			nbdd.open();
 			nbdd.insertMeta(new Metadata(Integer.parseInt(META_ID), META_TYPE, META_CONTENT));
